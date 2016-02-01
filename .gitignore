@@ -1,0 +1,5 @@
+# File extensions to ignore:
+*.epp
+
+# Folders to ignore:
+images/
