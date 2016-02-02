@@ -2,34 +2,86 @@
 // For now, I think that I will display the time in years plus months plus days.
 
 
-//	'use strict';
+	'use strict';
 
 
-	var daysSince = 0;
-	var daysUntil = 0;
-
-
-// Function name:	calculateDays()
-// Purpose:		This function will calculate the number of days from or two an event.
+// Function name:	sinceWedding()
+// Purpose:		This function will call calculateDays, passing the day and time of our wedding.
 // Parameters:		none
 // Returns:		none
 // Preconditions:	none
 // Postconditions:	none
-function calculateDays()
+function sinceWedding()
 {
-	// Create a new Date object in order to store time.
+	calculateDays( "2015-04-03T20:00:00" )
+}
+
+
+// Function name:	calculateDays()
+// Purpose:		This function will calculate the number of days from an event to today, or from today to an event.
+// Parameters:		eventDate: the day of the event in ISO-8601 format.  This can be YYYY-MM-DD, or YYYY-MM-DDTHH:MM (UTC time).
+// Returns:		none
+// Preconditions:	none
+// Postconditions:	none
+// Usage:			The text around this should read similar to "This even will happen in " + result + " from now.", or "This event happened " + result + " ago."
+function calculateDays( eventDate )
+{
+	// Set a default value for 'display', in case all later assignments fail.
+	var display = "JavaScript had an issue.  Please tell Adam.";
+
+	// Get the current epoch time.
 	var currentEpochTime = new Date().getTime();
-	var marriageMS = Date.parse( "April 3, 2015" );
-	var currentDelta = currentEpochTime - marriageMS;
-	var currentSeconds = currentDelta / 1000;
-	var currentMinutes = currentSeconds / 60;
-	var currentHours = currentMinutes / 60;
-	var currentDays = currentHours / 24;
-	var currentMonths = currentDays / 30;
-	var currentYears = currentDays / 365;
-	var display = parseInt( currentDays ) + " days";
+
+	// Get the epoch time of the event.
+	//var eventMS = Date.parse( "April 3, 2015" );
+	//var eventMS = Date.parse( "2015-04-03T20:00:00" );
+	var eventMS = Date.parse( eventDate );
+
+	if( currentEpochTime > eventMS )
+	{
+		var deltaMS = currentEpochTime - eventMS;
+	}
+	else
+	{
+		var deltaMS = eventMS - currentEpochTime;
+	}
+
+	var deltaSeconds = deltaMS / 1000;
+	var deltaMinutes = deltaSeconds / 60;
+	var deltaHours = deltaMinutes / 60;
+	var deltaDays = deltaHours / 24;
+	var deltaMonths = deltaDays / 30;
+	var deltaYears = deltaDays / 365;
+	if( deltaDays > ( 365 * 2 ) && parseInt( deltaDays % 365 ) > 1 )
+	{
+		display = parseInt( deltaYears ) + " years and " + parseInt( deltaDays % 365 ) + " days";
+	}
+	else if( deltaDays > ( 365 * 2 ) && parseInt( deltaDays % 365 ) == 1 )
+	{
+		display = parseInt( deltaYears ) + " years and " + parseInt( deltaDays % 365 ) + " day";
+	}
+	else if( deltaDays > 365 && parseInt( deltaDays % 365 ) > 1 )
+	{
+		display = parseInt( deltaYears ) + " year and " + parseInt( deltaDays % 365 ) + " days";
+	}
+	else if( deltaDays > 365 && parseInt( deltaDays % 365 ) == 1 )
+	{
+		display = parseInt( deltaYears ) + " year and " + parseInt( deltaDays % 365 ) + " day";
+	}
+	else if( deltaDays > 1 )
+	{
+		display = parseInt( deltaDays ) + " days";
+	}
+	else if( deltaDays < 1 )
+	{
+		display = deltaHours + " hours";
+	}
+	else
+	{
+		display = "Lots of things went poorly.  Please tell Adam he fails at conditionals.";
+	}
 	document.getElementById( 'countbox1' ).innerHTML = display;
 } // End of calculateDays() function.
 
 
-window.onload = calculateDays;
+window.onload = sinceWedding();
