@@ -17,6 +17,18 @@ function sinceWedding()
 }
 
 
+// Function name:	untilBabies()
+// Purpose:		This function will call calculateDays, passing the day and time of our twins' birth.
+// Parameters:		none
+// Returns:		none
+// Preconditions:	none
+// Postconditions:	none
+function untilBabies()
+{
+	calculateDays( "2016-08-26T07:01:00" )
+}
+
+
 // Function name:	calculateDays()
 // Purpose:		This function will calculate the number of days from an event to today, or from today to an event.
 // Parameters:		eventDate: the day of the event in ISO-8601 format.  This can be YYYY-MM-DD, or YYYY-MM-DDTHH:MM (UTC time).
@@ -84,4 +96,4 @@ function calculateDays( eventDate )
 } // End of calculateDays() function.
 
 
-window.onload = sinceWedding();
+//window.onload = sinceWedding();

@@ -2,12 +2,14 @@
 /*
 96e8bf	Wedding Color 1
 6d8e7e	Wedding Color 2
+315945	Old background color
+96e8bf	Old color
 */
 
 body
 {
-	background: #315945;
-	color: #96e8bf;
+	background: #00b3b3;
+	color: #333333;
 	font-family: Arial, Helvetica, sans-serif;
 	font-weight: normal;
 	font-style: normal;
@@ -159,19 +161,19 @@ p
 a:link
 {
 	background-color: transparent;
-	color: #729A86;
+	color: #737373;
 }
 
 a:visited
 {
 	background-color: transparent;
-	color: #729A86;
+	color: #cccccc;
 }
 
 a:hover
 {
 	background-color: transparent;
-	color: #96e8bf;
+	color: #e6e6e6;
 }
 
 a:active
