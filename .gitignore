@@ -1,5 +1,24 @@
+# This is the default .gitignore that I use for my web sites.
+# I prefer to keep revisions only for text files.  This is meant to keep git commits smaller, so pushes take less time.
+# My binary files are backed up via other means (Dropbox and CrashPlan).
+
+
 # File extensions to ignore:
 *.epp
+*.jpg
+*.png
+*.gif
+*.bmp
+*.mp3
+*.m4a
+*.zip
+*.7z
+*.bak
+*.exe
+
 
 # Folders to ignore:
 images/
+cgi-bin/
+unused/
+Stuff/
