@@ -1,0 +1,19 @@
+/*This is my default css file for the website's front page*/
+/*
+96e8bf	Wedding Color 1
+6d8e7e	Wedding Color 2
+315945	Old background color
+96e8bf	Old color
+*/
+
+body
+{
+	background: #9acbc5;
+	color: #333333;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	font-style: normal;
+	text-align: left;
+	text-decoration: none;
+	text-transform: none;
+}
