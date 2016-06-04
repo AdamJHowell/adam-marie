@@ -1,4 +1,4 @@
-// This will calculate the time since April 3rd, 2015, and update the countbox1 div with that duration.
+// This will calculate the time between now and the time passed to this , and update the passed div ID with that duration.
 // For now, I think that I will display the time in years plus months plus days.
 
 
@@ -6,17 +6,18 @@
 
 
 // Function name:	calculateDays()
-// Purpose:		This function will calculate the number of days from an event to today, or from today to an event.
-// Parameters:		eventDate: the day of the event in ISO-8601 format.  This can be YYYY-MM-DD, or YYYY-MM-DDTHH:MM (UTC time).
+// Purpose:		This function will calculate the duration between an event to today.
+// Parameters:		eventDate: the day of the event in ISO-8601 format.  This can be YYYY-MM-DD, or YYYY-MM-DDTHH:MM (UTC time).  divID: the div to update.  prefix: prefix text.  postfix: postfix text.
 // Returns:		none
 // Preconditions:	none
 // Postconditions:	none
-// Usage:			The text around this should read similar to "This even will happen in " + result + " from now.", or "This event happened " + result + " ago."
-//	I may decide to accommodate prefix and postfix text for both future and past events.  That will require a lot of extra code in the if-else statements below.
-function calculateDays( eventDate )
+function calculateDays( eventDate, divID, prefix, postfix )
 {
 	// Set a default value for 'display', in case all later assignments fail.
 	var display = "JavaScript had an issue.  Please tell Adam.";
+
+	// Get the existing content of the div.
+	var oldDivText = document.getElementById( divID ).innerText;
 
 	// Get the current epoch time.
 	var currentEpochTime = new Date().getTime();
@@ -80,6 +81,10 @@ function calculateDays( eventDate )
 	{
 		display = "Lots of things went poorly.  Please tell Adam he fails at conditionals.";
 	}
-	// Update 'countbox1' with the time delta and appropriate text.
-	document.getElementById( 'countbox1' ).innerHTML = display;
+	
+	// Add the prefix and postfix text.
+	var output = prefix + display + postfix;
+
+	// Update divID with the time delta and appropriate text.
+	document.getElementById( divID ).innerHTML = output;
 } // End of calculateDays() function.
