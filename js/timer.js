@@ -7,11 +7,16 @@
 
 // Function name:	calculateDays()
 // Purpose:		This function will calculate the duration between an event to today.
-// Parameters:		eventDate: the day of the event in ISO-8601 format.  This can be YYYY-MM-DD, or YYYY-MM-DDTHH:MM (UTC time).  divID: the div to update.  prefix: prefix text.  postfix: postfix text.
+// Parameters:		eventDate: the day of the event in ISO-8601 format.  This can be YYYY-MM-DD, or YYYY-MM-DDTHH:MM (UTC time).  
+//				divID: the div to update.  
+//				futurePrefix: the prefix text if the event has yet to happen. 
+//				futurePostfix: the postfix text if the event has yet to happen.
+//				pastPrefix: the prefix text if the event has already happened. 
+//				pastPostfix: the postfix text if the event has already happened.
 // Returns:		none
 // Preconditions:	none
 // Postconditions:	none
-function calculateDays( eventDate, divID, prefix, postfix )
+function calculateDays( eventDate, divID, futurePrefix, futurePostfix, pastPrefix, pastPostfix )
 {
 	// Set a default value for 'display', in case all later assignments fail.
 	var display = "JavaScript had an issue.  Please tell Adam.";
@@ -31,11 +36,13 @@ function calculateDays( eventDate, divID, prefix, postfix )
 	if( currentEpochTime > eventMS )
 	{
 		var deltaMS = currentEpochTime - eventMS;
+		var past = 1;
 	}
 	// If the event is in the future.
 	else
 	{
 		var deltaMS = eventMS - currentEpochTime;
+		var past = 0;
 	}
 
 	// Get the time delta in various units.
@@ -82,8 +89,16 @@ function calculateDays( eventDate, divID, prefix, postfix )
 		display = "Lots of things went poorly.  Please tell Adam he fails at conditionals.";
 	}
 	
-	// Add the prefix and postfix text.
-	var output = prefix + display + postfix;
+	if( past )
+	{
+		// Add the pastPrefix and pastPostfix text.
+		var output = pastPrefix + display + pastPostfix;
+	}
+	else
+	{
+		// Add the futurePrefix and futurePostfix text.
+		var output = futurePrefix + display + futurePostfix;
+	}
 
 	// Update divID with the time delta and appropriate text.
 	document.getElementById( divID ).innerHTML = output;
