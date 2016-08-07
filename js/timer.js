@@ -78,10 +78,14 @@ function calculateDays( eventDate, divID, futurePrefix, futurePostfix, pastPrefi
 	{
 		display = parseInt( deltaDays ) + " days";
 	}
+	else if( deltaDays == 1 )
+	{
+		display = parseInt( deltaDays ) + " day";
+	}
 	// Deal with hours.
 	else if( deltaDays < 1 )
 	{
-		display = deltaHours + " hours";
+		display = deltaHours.toFixed(1) + " hours";
 	}
 	// I decided not to deal with minutes or seconds, but those can easily be added.
 	else
