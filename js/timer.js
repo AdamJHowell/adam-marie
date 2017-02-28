@@ -50,6 +50,7 @@ function calculateDays( eventDate, divID, futurePrefix, futurePostfix, pastPrefi
 	var deltaMinutes = deltaSeconds / 60;
 	var deltaHours = deltaMinutes / 60;
 	var deltaDays = deltaHours / 24;
+	var deltaWeeks = deltaDays / 7;
 	var deltaMonths = deltaDays / 30;
 	var deltaYears = deltaDays / 365;
 	
@@ -63,6 +64,11 @@ function calculateDays( eventDate, divID, futurePrefix, futurePostfix, pastPrefi
 	{
 		display = parseInt( deltaYears ) + " years and " + parseInt( deltaDays % 365 ) + " day";
 	}
+	// Deal with whole years.
+	else if( deltaDays % 365 == 0 )
+	{
+		display = parseInt( deltaYears ) + " year and " + parseInt( deltaDays % 365 ) + " days";
+	}
 	// Deal with 1 year and more than 1 day.
 	else if( deltaDays > 365 && parseInt( deltaDays % 365 ) > 1 )
 	{
@@ -73,12 +79,27 @@ function calculateDays( eventDate, divID, futurePrefix, futurePostfix, pastPrefi
 	{
 		display = parseInt( deltaYears ) + " year and " + parseInt( deltaDays % 365 ) + " day";
 	}
+	// Deal with whole weeks.
+	else if( deltaDays > 7 && deltaDays % 7 == 0 )
+	{
+		display = parseInt( deltaWeeks ) + " weeks";
+	}
+	// Deal with weeks and a remainder of more than one day.
+	else if( deltaDays > 7 && deltaDays % 7 >= 2 )
+	{
+		display = parseInt( deltaWeeks ) + " weeks and " + parseInt( deltaDays % 7 ) + " days";
+	}
+	// Deal with weeks and a remainder of exactly one day.  I use greater-than-or-equal-to here to catch fractional days that are still less than 2.
+	else if( deltaDays > 7 && parseInt( deltaDays % 7 >= 1 ) )
+	{
+		display = parseInt( deltaWeeks ) + " weeks and " + parseInt( deltaDays % 7 ) + " day";
+	}
 	// Deal with more than 1 day.
 	else if( deltaDays > 1 )
 	{
 		display = parseInt( deltaDays ) + " days";
 	}
-	else if( deltaDays == 1 )
+	else if( parseInt( deltaDays == 1 ) )
 	{
 		display = parseInt( deltaDays ) + " day";
 	}
